@@ -4,6 +4,16 @@ interface Post {
     body: string;
 }
 
+export async function generateStaticParams() {
+    const posts: Post[] = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+    ).then((res) => res.json());
+
+    return posts.map((post) => ({
+        id: post.id.toString(),
+    }));
+}
+
 async function getPost(id: string) {
     const res = await fetch(
         //urlのidが動的にパラメータとしてコンポーネントに渡される
