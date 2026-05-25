@@ -1,3 +1,4 @@
+import HeavyButton from "../component/heavyButton";
 interface Post {
     id: number;
     title: string;
@@ -37,6 +38,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ id:
 
     return (
         <div>
+            <HeavyButton />
             <h1>{post.title}</h1>
             <p>{post.body}</p>
         </div>
