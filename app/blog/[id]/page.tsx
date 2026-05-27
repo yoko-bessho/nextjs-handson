@@ -1,7 +1,18 @@
+import HeavyButton from "../component/heavyButton";
 interface Post {
     id: number;
     title: string;
     body: string;
+}
+
+export async function generateStaticParams() {
+    const posts: Post[] = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+    ).then((res) => res.json());
+
+    return posts.map((post) => ({
+        id: post.id.toString(),
+    }));
 }
 
 async function getPost(id: string) {
@@ -27,6 +38,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ id:
 
     return (
         <div>
+            <HeavyButton />
             <h1>{post.title}</h1>
             <p>{post.body}</p>
         </div>
