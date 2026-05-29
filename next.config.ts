@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
                 hostname: "placehold.jp",
                 pathname: "/**", //完全一致
             },
+            {
+                protocol: "https",
+                hostname: "picsum.photos",
+                pathname: "/seed/**", //seedから始まるパスにマッチ
+            }
         ],
     },
 };

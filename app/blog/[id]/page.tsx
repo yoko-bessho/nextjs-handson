@@ -1,4 +1,7 @@
 import HeavyButton from "../component/heavyButton";
+import RenderedTime from "./RenderdTime";
+import Image from "next/image";
+
 interface Post {
     id: number;
     title: string;
@@ -36,9 +39,20 @@ export default async function PostDetailPage({ params }: { params: Promise<{ id:
 
     const post: Post = await getPost(id);
 
+    const renderedAt = new Date().toLocaleTimeString();//現在の時刻を取得(サーバーとクライアントで値が異なる)
+
     return (
         <div>
+            <Image
+                src={`https://picsum.photos/seed/${id}/800/400?blur=3`}
+                alt="Profile Picture"
+                width={800}
+                height={400}
+                priority
+            />
             <HeavyButton />
+            <RenderedTime />
+            <p>サーバーでのRendered at: {renderedAt}</p>
             <h1>{post.title}</h1>
             <p>{post.body}</p>
         </div>
