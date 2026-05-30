@@ -1,6 +1,11 @@
 import HeavyButton from "../component/heavyButton";
 import RenderedTime from "./RenderdTime";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const Comments = dynamic(() => import("./Comments"), {
+    loading: () => <p>Loading comments...</p>,
+});
 
 interface Post {
     id: number;
@@ -50,6 +55,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ id:
                 height={400}
                 priority
             />
+            <Comments />
             <HeavyButton />
             <RenderedTime />
             <p>サーバーでのRendered at: {renderedAt}</p>
